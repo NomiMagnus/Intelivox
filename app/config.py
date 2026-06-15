@@ -14,7 +14,5 @@ class Settings:
     def ensure_data_paths(self):
         self.data_dir.mkdir(parents=True, exist_ok=True)
         self.audio_dir.mkdir(parents=True, exist_ok=True)
-        if not self.residents_file.exists():
-            self.residents_file.write_text("[]", encoding="utf-8")
 
 settings = Settings()
