@@ -1,0 +1,62 @@
+# === Python Cache & Compiled Files ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# === Virtual Environments ===
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# === Environment Variables & Secrets (CRITICAL for REST API) ===
+# חוסם את קבצי המפתחות וההגדרות של השרת
+.env
+.env.local
+.env.*
+# מאפשר להעלות קובץ דוגמה ריק כדי שפתחים אחרים ידעו אילו משתנים צריך
+!.env.example
+
+# === IDEs and Editors ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# === Databases (Local Development) ===
+# מונע העלאה של בסיסי נתונים מקומיים
+*.sqlite3
+*.db
+
+# === Logs & Diagnostics ===
+*.log
+logs/
+.catbox/
+
+# === OS Specific Files ===
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+
+# === Testing & Coverage ===
+.htmlcov/
+.tox/
+.no****/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+gemini-code-1781546111369.txt
+מציג את gemini-code-1781546111369.txt.
