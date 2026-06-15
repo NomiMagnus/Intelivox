@@ -1,13 +1,15 @@
 from typing import Dict, List, Optional
 
-from app.models.domain import Resident, ResidentStatus, ResidentType
-from app.services.storage_service import storage_service
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+
+from app.models.resident import Resident, ResidentStatus, ResidentType
 
 class ResidentService:
-    def create_resident(self, payload: Dict[str, Optional[str]]) -> Resident:
+    def create_resident(self, db: Session, payload: Dict[str, Optional[str]]) -> Resident:
         resident = Resident(
-            resident_type=ResidentType(payload.get("type", ResidentType.INDIVIDUAL.value)),
-            status=ResidentStatus(payload.get("status", ResidentStatus.NEW.value)),
+            type=ResidentType(payload.get("type", ResidentType.individual.value)),
+            status=ResidentStatus(payload.get("status", ResidentStatus.new.value)),
             first_name=payload.get("first_name"),
             last_name=payload.get("last_name"),
             organization_name=payload.get("organization_name"),
@@ -16,16 +18,24 @@ class ResidentService:
             work_phone=payload.get("work_phone"),
             email=payload.get("email"),
         )
-        return storage_service.save_resident(resident)
+        db.add(resident)
+        db.commit()
+        db.refresh(resident)
+        return resident
 
-    def list_residents(self) -> List[Resident]:
-        return storage_service.list_residents()
+    def list_residents(self, db: Session) -> List[Resident]:
+        return db.query(Resident).from_statement(text("SELECT * FROM prc_get_residents()")).all()
 
-    def get_resident(self, resident_id: str) -> Optional[Resident]:
-        return storage_service.get_resident(resident_id)
+    def get_resident(self, db: Session, resident_id: str) -> Optional[Resident]:
+        return (
+            db.query(Resident)
+            .from_statement(text("SELECT * FROM prc_get_resident(:resident_id)"))
+            .params(resident_id=resident_id)
+            .first()
+        )
 
-    def update_resident(self, resident_id: str, patch_data: Dict[str, Optional[str]]) -> Optional[Resident]:
-        current = self.get_resident(resident_id)
+    def update_resident(self, db: Session, resident_id: str, patch_data: Dict[str, Optional[str]]) -> Optional[Resident]:
+        current = db.query(Resident).filter(Resident.id == resident_id).first()
         if not current:
             return None
 
@@ -48,6 +58,8 @@ class ResidentService:
         if patch_data.get("email") is not None:
             current.email = patch_data["email"]
 
-        return storage_service.update_resident(resident_id, current.to_dict())
+        db.commit()
+        db.refresh(current)
+        return current
 
 resident_service = ResidentService()
