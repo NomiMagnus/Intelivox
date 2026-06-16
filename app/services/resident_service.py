@@ -8,8 +8,8 @@ from app.models.resident import Resident, ResidentStatus, ResidentType
 class ResidentService:
     def create_resident(self, db: Session, payload: Dict[str, Optional[str]]) -> Resident:
         resident = Resident(
-            type=ResidentType(payload.get("type", ResidentType.individual.value)),
-            status=ResidentStatus(payload.get("status", ResidentStatus.new.value)),
+            type=ResidentType(payload.get("type", "individual")),
+            status=ResidentStatus(payload.get("status", "new")),
             first_name=payload.get("first_name"),
             last_name=payload.get("last_name"),
             organization_name=payload.get("organization_name"),

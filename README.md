@@ -10,7 +10,7 @@ Smart phone book management system, lead management, tasks and smart customer ma
    ```
 2. Run the API:
    ```bash
-   py -m uvicorn app.main:app --reload
+   uvicorn app.main:app --reload --port 8000
    ```
 3. Open the interactive docs:
    - http://127.0.0.1:8000/docs
