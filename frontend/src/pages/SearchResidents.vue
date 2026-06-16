@@ -41,8 +41,8 @@
               <div class="rounded-3xl border border-white/10 bg-slate-950/90 p-4 transition hover:border-sky-500/50 hover:bg-slate-900/95">
                 <div class="flex items-center justify-between gap-3">
                   <div>
-                    <h3 class="text-lg font-semibold text-white">{{ resident.firstName }} {{ resident.lastName }}</h3>
-                    <p class="text-sm text-slate-400">Room: {{ resident.room }}</p>
+                    <h3 class="text-lg font-semibold text-white">{{ resident.first_name }} {{ resident.last_name }}</h3>
+                    <p class="text-sm text-slate-400">Type: {{ resident.type }}</p>
                   </div>
                   <span class="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-300">{{ resident.status }}</span>
                 </div>
