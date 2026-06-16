@@ -12,6 +12,10 @@ export interface Resident {
   room: string
   status: string
   notes?: string
+  mobile_phone?: string
+  home_phone?: string
+  work_phone?: string
+  email?: string
 }
 
 export interface ResidentSearchQuery {

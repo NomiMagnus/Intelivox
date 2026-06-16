@@ -46,7 +46,12 @@
                   </div>
                   <span class="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-300">{{ resident.status }}</span>
                 </div>
-                <p class="mt-3 text-sm text-slate-400">{{ resident.notes || 'No notes available' }}</p>
+                <div class="mt-3 space-y-1 text-sm text-slate-400">
+                  <p v-if="resident.mobile_phone" class="flex items-center gap-4"><i class="pi pi-mobile" /> {{ resident.mobile_phone }}</p>
+                  <p v-if="resident.home_phone" class="flex items-center gap-4"><i class="pi pi-home" /> {{ resident.home_phone }}</p>
+                  <p v-if="resident.work_phone" class="flex items-center gap-4"><i class="pi pi-briefcase" /> {{ resident.work_phone }}</p>
+                  <p v-if="resident.email" class="flex items-center gap-4"><i class="pi pi-envelope" /> {{ resident.email }}</p>
+                </div>
               </div>
             </template>
           </div>
