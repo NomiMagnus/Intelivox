@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
-from typing import List
+from typing import List, Optional
 from sqlalchemy.orm import Session
 
 from app.db import get_db
@@ -18,8 +18,12 @@ def create_resident(payload: ResidentCreatePayload, db: Session = Depends(get_db
     return ResidentRead(**resident.to_dict())
 
 @router.get("/residents", response_model=List[ResidentRead])
-def list_residents(db: Session = Depends(get_db)):
-    residents = resident_service.list_residents(db)
+def list_residents(q: Optional[str] = None, db: Session = Depends(get_db)):
+    residents = (
+        resident_service.search_residents(db, q)
+        if q and q.strip()
+        else resident_service.list_residents(db)
+    )
     return [ResidentRead(**resident.to_dict()) for resident in residents]
 
 @router.get("/residents/{resident_id}", response_model=ResidentRead)

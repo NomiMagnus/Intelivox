@@ -26,6 +26,15 @@ class ResidentService:
     def list_residents(self, db: Session) -> List[Resident]:
         return db.query(Resident).from_statement(text("SELECT * FROM prc_get_residents()")).all()
 
+    def search_residents(self, db: Session, q: Optional[str]) -> List[Resident]:
+        if not q:
+            return self.list_residents(db)
+        # Basic search implementation: search by first_name, last_name, email or room-like fields
+        query = text(
+            "SELECT * FROM prc_search_residents(CAST(:q AS text))"
+        )
+        return db.query(Resident).from_statement(query).params(q=q).all()
+
     def get_resident(self, db: Session, resident_id: str) -> Optional[Resident]:
         return (
             db.query(Resident)
