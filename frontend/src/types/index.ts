@@ -7,15 +7,14 @@ export interface User {
 
 export interface Resident {
   id: string
-  firstName: string
-  lastName: string
-  room: string
+  first_name: string
+  last_name: string
   status: string
-  notes?: string
   mobile_phone?: string
   home_phone?: string
   work_phone?: string
   email?: string
+  type?: string
 }
 
 export interface ResidentSearchQuery {
