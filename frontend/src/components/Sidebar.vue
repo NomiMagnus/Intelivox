@@ -12,6 +12,7 @@
 
     <nav class="flex flex-col gap-2">
       <SidebarLink to="/" icon="pi pi-home" />
+      <SidebarLink to="/update" icon="pi pi-pencil" />
       <SidebarLink to="/search" icon="pi pi-search" />
       <SidebarLink to="/settings" icon="pi pi-cog" />
       <SidebarLink to="/user" icon="pi pi-user" />
