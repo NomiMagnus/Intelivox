@@ -43,8 +43,29 @@ def upgrade():
         """
     )
 
+    op.execute(
+        """
+        CREATE OR REPLACE FUNCTION prc_search_residents(q text)
+        RETURNS SETOF tbl_resident
+        LANGUAGE sql
+        AS $$
+            SELECT *
+            FROM tbl_resident
+            WHERE q IS NULL
+               OR LOWER(first_name) LIKE LOWER('%' || q || '%')
+               OR LOWER(last_name) LIKE LOWER('%' || q || '%')
+               OR LOWER(organization_name) LIKE LOWER('%' || q || '%')
+               OR LOWER(email) LIKE LOWER('%' || q || '%')
+               OR LOWER(mobile_phone) LIKE LOWER('%' || q || '%')
+               OR LOWER(home_phone) LIKE LOWER('%' || q || '%')
+               OR LOWER(work_phone) LIKE LOWER('%' || q || '%');
+        $$;
+        """
+    )
+
 
 def downgrade():
+    op.execute("DROP FUNCTION IF EXISTS prc_search_residents(text)")
     op.execute("DROP FUNCTION IF EXISTS prc_get_resident(uuid)")
     op.execute("DROP FUNCTION IF EXISTS prc_get_residents()")
 
