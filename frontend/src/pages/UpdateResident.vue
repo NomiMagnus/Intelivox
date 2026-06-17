@@ -1,52 +1,53 @@
 <template>
   <div class="space-y-6">
-    <div class="rounded-3xl border border-white/10 bg-slate-950/90 p-6 shadow-xl shadow-black/20">
-      <h1 class="text-3xl font-semibold text-white">Update Resident</h1>
-      <p class="mt-2 text-slate-400">Update resident details by mobile phone</p>
+    <div class="neo-hero p-6">
+      <p class="neo-label">Management</p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-white">Update Resident</h1>
+      <p class="mt-2 text-neo-muted">Update resident details by mobile phone</p>
     </div>
 
     <Card>
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-2">First Name *</label>
-          <Input v-model="form.firstName" :class="{ 'border-red-500': errors.firstName }" />
-          <p v-if="errors.firstName" class="text-sm text-red-400 mt-1">{{ errors.firstName }}</p>
+          <label class="neo-label mb-2 block">First Name *</label>
+          <Input v-model="form.firstName" :class="{ 'ring-2 ring-red-500/50': errors.firstName }" />
+          <p v-if="errors.firstName" class="mt-1 text-sm text-red-400">{{ errors.firstName }}</p>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-2">Last Name *</label>
-          <Input v-model="form.lastName" :class="{ 'border-red-500': errors.lastName }" />
-          <p v-if="errors.lastName" class="text-sm text-red-400 mt-1">{{ errors.lastName }}</p>
+          <label class="neo-label mb-2 block">Last Name *</label>
+          <Input v-model="form.lastName" :class="{ 'ring-2 ring-red-500/50': errors.lastName }" />
+          <p v-if="errors.lastName" class="mt-1 text-sm text-red-400">{{ errors.lastName }}</p>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-2">Mobile Phone *</label>
-          <Input v-model="form.mobilePhone" :class="{ 'border-red-500': errors.mobilePhone }" />
-          <p v-if="errors.mobilePhone" class="text-sm text-red-400 mt-1">{{ errors.mobilePhone }}</p>
+          <label class="neo-label mb-2 block">Mobile Phone *</label>
+          <Input v-model="form.mobilePhone" :class="{ 'ring-2 ring-red-500/50': errors.mobilePhone }" />
+          <p v-if="errors.mobilePhone" class="mt-1 text-sm text-red-400">{{ errors.mobilePhone }}</p>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-2">Home Phone</label>
-          <Input v-model="form.homePhone" :class="{ 'border-red-500': errors.homePhone }" />
-          <p v-if="errors.homePhone" class="text-sm text-red-400 mt-1">{{ errors.homePhone }}</p>
+          <label class="neo-label mb-2 block">Home Phone</label>
+          <Input v-model="form.homePhone" :class="{ 'ring-2 ring-red-500/50': errors.homePhone }" />
+          <p v-if="errors.homePhone" class="mt-1 text-sm text-red-400">{{ errors.homePhone }}</p>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-2">Email</label>
-          <Input v-model="form.email" type="email" :class="{ 'border-red-500': errors.email }" />
-          <p v-if="errors.email" class="text-sm text-red-400 mt-1">{{ errors.email }}</p>
+          <label class="neo-label mb-2 block">Email</label>
+          <Input v-model="form.email" type="email" :class="{ 'ring-2 ring-red-500/50': errors.email }" />
+          <p v-if="errors.email" class="mt-1 text-sm text-red-400">{{ errors.email }}</p>
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-slate-300 mb-2">Type *</label>
-          <select v-model="form.type" class="w-full rounded-xl border border-white/10 bg-slate-900 px-4 py-2 text-white">
+          <label class="neo-label mb-2 block">Type *</label>
+          <select v-model="form.type" class="neo-select">
             <option value="individual">Individual</option>
             <option value="organization">Organization</option>
             <option value="institution">Institution</option>
           </select>
         </div>
 
-        <div class="flex gap-3 pt-4">
+        <div class="flex flex-col gap-3 pt-4 sm:flex-row">
           <Button type="submit" :disabled="loading">{{ loading ? 'Updating...' : 'Update Resident' }}</Button>
           <Button type="button" variant="secondary" @click="resetForm">Clear</Button>
         </div>
@@ -57,22 +58,22 @@
 
     <Toast v-if="toast.message" :message="toast.message" :type="toast.type" />
 
-    <div v-if="showConfirmation" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click.self="showConfirmation = false">
-      <div class="rounded-3xl border border-white/10 bg-slate-950 p-6 shadow-xl max-w-md w-full mx-4">
-        <h2 class="text-xl font-semibold text-white mb-4">Confirm Update</h2>
-        <p class="text-slate-300 mb-6">Are you sure you want to update this resident?</p>
-        <div class="flex gap-3">
+    <div v-if="showConfirmation" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm" @click.self="showConfirmation = false">
+      <div class="neo-raised w-full max-w-md p-6">
+        <h2 class="mb-4 text-xl font-semibold text-white">Confirm Update</h2>
+        <p class="mb-6 text-neo-muted">Are you sure you want to update this resident?</p>
+        <div class="flex flex-col gap-3 sm:flex-row">
           <Button @click="confirmUpdate">Confirm</Button>
           <Button variant="secondary" @click="showConfirmation = false">Cancel</Button>
         </div>
       </div>
     </div>
 
-    <div v-if="showNotFound" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50" @click.self="showNotFound = false">
-      <div class="rounded-3xl border border-white/10 bg-slate-950 p-6 shadow-xl max-w-md w-full mx-4">
-        <h2 class="text-xl font-semibold text-white mb-4">Resident Not Found</h2>
-        <p class="text-slate-300 mb-6">No resident found with this mobile phone. Would you like to add a new resident?</p>
-        <div class="flex gap-3">
+    <div v-if="showNotFound" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm" @click.self="showNotFound = false">
+      <div class="neo-raised w-full max-w-md p-6">
+        <h2 class="mb-4 text-xl font-semibold text-white">Resident Not Found</h2>
+        <p class="mb-6 text-neo-muted">No resident found with this mobile phone. Would you like to add a new resident?</p>
+        <div class="flex flex-col gap-3 sm:flex-row">
           <Button @click="confirmCreate">Add New Resident</Button>
           <Button variant="secondary" @click="showNotFound = false">Cancel</Button>
         </div>

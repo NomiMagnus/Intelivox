@@ -1,15 +1,26 @@
 <template>
-  <RouterLink :to="to" class="group flex items-center gap-3 rounded-3xl px-4 py-3 text-sm font-medium transition hover:bg-slate-800 hover:text-white" active-class="bg-slate-800 text-white">
-    <span class="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-slate-950 text-slate-300 transition duration-200 group-hover:bg-sky-500 group-hover:text-white">
+  <RouterLink
+    :to="to"
+    class="group flex flex-col items-center gap-1 rounded-neo px-2 py-2 text-center transition duration-200 lg:flex-row lg:gap-3 lg:px-4 lg:py-3 lg:text-left"
+    active-class="lg:bg-neo-elevated"
+  >
+    <span
+      :class="[
+        'neo-nav-icon text-base',
+        isActive ? 'neo-nav-icon-active' : 'group-hover:text-white',
+      ]"
+    >
       <i :class="icon" aria-hidden="true"></i>
     </span>
-    <span>{{ label }}</span>
+    <span class="text-[10px] font-medium text-neo-muted transition group-hover:text-white lg:text-sm" :class="{ 'text-white': isActive }">
+      {{ label }}
+    </span>
   </RouterLink>
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
-import { defineProps, computed } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+import { computed } from 'vue'
 
 const props = defineProps({
   to: {
@@ -22,6 +33,8 @@ const props = defineProps({
   },
 })
 
+const route = useRoute()
+
 const label = computed(() => {
   return props.to === '/'
     ? 'Home'
@@ -30,4 +43,6 @@ const label = computed(() => {
         .replace(/-/g, ' ')
         .replace(/\b\w/g, (ch) => ch.toUpperCase())
 })
+
+const isActive = computed(() => route.path === props.to)
 </script>

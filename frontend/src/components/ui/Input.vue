@@ -1,21 +1,19 @@
 <template>
   <input
-    class="w-full rounded-2xl border border-white/10 bg-slate-950/90 px-4 py-3 text-sm text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20"
+    class="neo-inset w-full px-4 py-3 text-sm text-white transition duration-200 placeholder:text-neo-muted focus:ring-2 focus:ring-neo-accent/30"
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     v-bind="$attrs"
   />
 </template>
 
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue'
-
-const props = defineProps({
+defineProps({
   modelValue: {
     type: String,
     default: '',
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
+defineEmits(['update:modelValue'])
 </script>

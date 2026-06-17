@@ -1,5 +1,5 @@
 <template>
-  <div class="rounded-3xl border border-white/10 bg-slate-950/95 p-5 shadow-xl shadow-black/20">
+  <div class="neo-raised p-5 lg:p-6">
     <slot />
   </div>
 </template>
