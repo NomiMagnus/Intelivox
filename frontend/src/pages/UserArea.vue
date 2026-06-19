@@ -32,10 +32,15 @@
         <Button variant="secondary">Disconnect</Button>
       </div>
     </Card>
+
+    <Card>
+      <Settings />
+    </Card>
   </div>
 </template>
 
 <script setup lang="ts">
 import Card from '../components/ui/Card.vue'
 import Button from '../components/ui/Button.vue'
+import Settings from './Settings.vue';
 </script>
