@@ -3,12 +3,12 @@
     <Card>
       <div class="grid gap-6 lg:grid-cols-2">
         <div>
-          <p class="neo-label">Profile</p>
-          <h1 class="mt-2 text-3xl font-semibold tracking-tight text-white">User Area</h1>
-          <p class="mt-2 text-neo-muted">View and update your profile details.</p>
+          <p class="neo-label">{{ $t('userArea.label') }}</p>
+          <h1 class="mt-2 text-3xl font-semibold tracking-tight text-white">{{ $t('userArea.title') }}</h1>
+          <p class="mt-2 text-neo-muted">{{ $t('userArea.subtitle') }}</p>
         </div>
         <div class="neo-inset p-6">
-          <p class="neo-label">Signed in as</p>
+          <p class="neo-label">{{ $t('userArea.signedInAs') }}</p>
           <p class="mt-3 text-xl font-semibold text-white">Intelivox User</p>
           <p class="text-neo-muted">user@intelivox.local</p>
         </div>
@@ -16,20 +16,20 @@
     </Card>
 
     <Card>
-      <h2 class="text-xl font-semibold text-white">Account details</h2>
+      <h2 class="text-xl font-semibold text-white">{{ $t('userArea.accountDetails') }}</h2>
       <div class="mt-6 grid gap-4 sm:grid-cols-2">
         <div>
-          <label class="neo-label">Full name</label>
+          <label class="neo-label">{{ $t('userArea.fullName') }}</label>
           <input class="neo-inset mt-2 w-full px-4 py-3 text-white" value="Intelivox User" />
         </div>
         <div>
-          <label class="neo-label">Email address</label>
+          <label class="neo-label">{{ $t('userArea.emailAddress') }}</label>
           <input class="neo-inset mt-2 w-full px-4 py-3 text-white" value="user@intelivox.local" />
         </div>
       </div>
       <div class="mt-6 flex flex-wrap gap-3">
-        <Button>Save changes</Button>
-        <Button variant="secondary">Disconnect</Button>
+        <Button>{{ $t('userArea.saveChanges') }}</Button>
+        <Button variant="secondary">{{ $t('userArea.disconnect') }}</Button>
       </div>
     </Card>
 

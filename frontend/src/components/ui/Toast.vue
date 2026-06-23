@@ -1,6 +1,6 @@
 <template>
   <Transition name="toast">
-    <div v-if="show" :class="['neo-raised fixed right-4 top-4 z-[100] px-6 py-4', typeClasses]">
+    <div v-if="show" :class="['neo-raised fixed end-4 top-4 z-[100] px-6 py-4', typeClasses]">
       <p class="font-medium">{{ message }}</p>
     </div>
   </Transition>

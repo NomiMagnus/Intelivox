@@ -1,0 +1,127 @@
+{
+  "common": {
+    "appName": "Intelivox",
+    "confirm": "אישור",
+    "cancel": "ביטול",
+    "language": "שפה",
+    "languageName": {
+      "en": "English",
+      "he": "עברית"
+    }
+  },
+  "nav": {
+    "home": "בית",
+    "update": "עדכון",
+    "search": "חיפוש",
+    "user": "משתמש"
+  },
+  "sidebar": {
+    "dashboard": "לוח בקרה",
+    "brand": "Intelivox",
+    "tagline": "מרכז בקרה ולוח תושבים",
+    "quickStatus": "סטטוס מהיר",
+    "localEnv": "סביבה מקומית:",
+    "apiUrl": "כתובת API:"
+  },
+  "home": {
+    "welcomeLabel": "ברוכים הבאים",
+    "welcomeTitle": "ברוכים הבאים ל-Intelivox",
+    "welcomeSubtitle": "מבנה צד-לקוח מדרגי שתוכנן לחיפוש תושבים, הגדרות וניהול משתמשים.",
+    "openDashboard": "פתיחת לוח הבקרה",
+    "viewResidents": "צפיה בתושבים",
+    "architectureTitle": "ארכיטקטורת הפרויקט",
+    "arch1": "הפרדת תיקיות נקייה לעמודים, חנויות, שירותים ו-composables",
+    "arch2": "פאנל ניווט בצד עם אזור התוכן הראשי",
+    "arch3": "עיצוב באמצעות Tailwind עם תכנון רספונסיבי",
+    "arch4": "תמיכה ב-TypeScript והגדרת API מבוססת סביבה",
+    "getStartedTitle": "התחלה",
+    "getStartedBody": "ניתן להשתמש בסרגל הצד כדי לנווט בין העמודים ולבנות בהמשך את תהליך חיפוש התושבים. האפליקציה מוכנה להרחבה עם אינטגרציית שרת ואימות בהמשך."
+  },
+  "search": {
+    "label": "תושבים",
+    "title": "חיפוש תושבים",
+    "subtitle": "חיפוש ועיון ברשומות תושבים משירות השרת.",
+    "searchPlaceholder": "חיפוש לפי שם, חדר או סטטוס",
+    "search": "חיפוש",
+    "listTitle": "רשימת תושבים",
+    "found": "נמצאו {count} תושבים",
+    "reload": "טען מחדש",
+    "loading": "טוען תושבים...",
+    "empty": "עדיין לא נטענו תושבים. יש ללחוץ על 'טעינה מחדש' כדי להביא נתונים.",
+    "type": "סוג"
+  },
+  "update": {
+    "label": "ניהול",
+    "title": "עדכון תושב",
+    "subtitle": "עדכון פרטי תושב לפי טלפון נייד",
+    "firstName": "שם פרטי *",
+    "lastName": "שם משפחה *",
+    "mobilePhone": "טלפון נייד *",
+    "homePhone": "טלפון בבית",
+    "email": "אימייל",
+    "type": "סוג *",
+    "typeIndividual": "פרטי",
+    "typeOrganization": "ארגון",
+    "typeInstitution": "מוסד",
+    "submit": "עדכון תושב",
+    "updating": "מעדכן...",
+    "clear": "נקה",
+    "confirmTitle": "אישור עדכון",
+    "confirmBody": "האם אתם בטוחים שברצונכם לעדכן תושב זה?",
+    "notFoundTitle": "תושב לא נמצא",
+    "notFoundBody": "לא נמצא תושב עם טלפון נייד זה. האם ברצונכם להוסיף תושב חדש?",
+    "addNew": "הוספת תושב חדש",
+    "updateSuccess": "התושב עודכן בהצלחה!",
+    "createSuccess": "התושב נוצר בהצלחה!",
+    "updateError": "עדכון התושב נכשל",
+    "createError": "יצירת התושב נכשלה"
+  },
+  "validation": {
+    "firstNameRequired": "יש להזין שם פרטי",
+    "firstNameMax": "שם פרטי חייב להיות עד 128 תווים",
+    "lastNameRequired": "יש להזין שם משפחה",
+    "lastNameMax": "שם משפחה חייב להיות עד 128 תווים",
+    "mobileRequired": "יש להזין טלפון נייד",
+    "phoneFormat": "פורמט טלפון לא תקין (7-32 תווים, +0-9()-רווח)",
+    "emailFormat": "פורמט אימייל לא תקין"
+  },
+  "userArea": {
+    "label": "פרופיל",
+    "title": "אזור משתמש",
+    "subtitle": "צפייה ועדכון של פרטי הפרופיל שלך.",
+    "signedInAs": "מחובר בתור",
+    "accountDetails": "פרטי חשבון",
+    "fullName": "שם מלא",
+    "emailAddress": "כתובת אימייל",
+    "saveChanges": "שמירת השינויים",
+    "disconnect": "התנתקות"
+  },
+  "settings": {
+    "label": "העדפות",
+    "title": "הגדרות",
+    "subtitle": "התאמת העדפות היישום ואפשרויות הממשק.",
+    "general": "כללי",
+    "language": "שפה",
+    "themeMode": "מצב ערכת נושא",
+    "dark": "כהה",
+    "light": "בהיר",
+    "dataRefresh": "רענון נתונים",
+    "manual": "ידני",
+    "auto": "אוטומטי",
+    "notifications": "התראות",
+    "enableAlerts": "הפעלת התראות תושבים",
+    "receiveEmail": "קבלת התראות באימייל"
+  },
+  "errors": {
+    "notFoundLabel": "הדף לא נמצא",
+    "notFoundCode": "404",
+    "notFoundTitle": "דף זה אינו קיים",
+    "notFoundBody": "ייתכן שהדף הועבר, שונה, או שמעולם לא היה קיים.",
+    "forbiddenLabel": "הגישה נדחתה",
+    "forbiddenCode": "403",
+    "forbiddenTitle": "אין לך הרשאה",
+    "forbiddenBody": "אין לך הרשאה לצפות בדף זה. אם לדעתך מדובר בטעות, ניתן לפנות למנהל המערכת.",
+    "backToHome": "חזרה לדף הבית",
+    "goBack": "חזרה"
+  }
+}

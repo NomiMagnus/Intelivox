@@ -9,8 +9,8 @@
       <p class="mx-auto mt-3 max-w-md text-neo-muted">{{ content.message }}</p>
 
       <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-col">
-        <Button @click="goHome">Back to home</Button>
-        <Button variant="secondary" @click="goBack">Go back</Button>
+        <Button @click="goHome">{{ $t('errors.backToHome') }}</Button>
+        <Button variant="secondary" @click="goBack">{{ $t('errors.goBack') }}</Button>
       </div>
     </div>
   </div>
@@ -19,38 +19,46 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import Button from '../components/ui/Button.vue'
+import { resolvePreferredLocale } from '../stores/locale'
+import { isSupportedLocale } from '../i18n'
 
 const route = useRoute()
 const router = useRouter()
+const { t } = useI18n()
 
 const forbidden = computed(() => route.meta.forbidden === true)
 
 const content = computed(() =>
   forbidden.value
     ? {
-        label: 'Access denied',
-        code: '403',
-        title: 'You don’t have permission',
-        message: 'You don’t have permission to view this page. If you believe this is a mistake, contact your administrator.',
+        label: t('errors.forbiddenLabel'),
+        code: t('errors.forbiddenCode'),
+        title: t('errors.forbiddenTitle'),
+        message: t('errors.forbiddenBody'),
       }
     : {
-        label: 'Page not found',
-        code: '404',
-        title: 'This page doesn’t exist',
-        message: 'The page you are looking for may have been moved, renamed, or never existed.',
+        label: t('errors.notFoundLabel'),
+        code: t('errors.notFoundCode'),
+        title: t('errors.notFoundTitle'),
+        message: t('errors.notFoundBody'),
       },
 )
 
+const locale = computed(() =>
+  isSupportedLocale(route.params.locale) ? route.params.locale : resolvePreferredLocale(),
+)
+
 function goHome() {
-  router.push('/')
+  router.push({ name: 'Home', params: { locale: locale.value } })
 }
 
 function goBack() {
   if (window.history.length > 1) {
     router.back()
   } else {
-    router.push('/')
+    goHome()
   }
 }
 </script>

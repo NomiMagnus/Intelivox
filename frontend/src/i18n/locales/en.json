@@ -1,0 +1,127 @@
+{
+  "common": {
+    "appName": "Intelivox",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "language": "Language",
+    "languageName": {
+      "en": "English",
+      "he": "עברית"
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "update": "Update",
+    "search": "Search",
+    "user": "User"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "brand": "Intelivox",
+    "tagline": "Control center and resident dashboard",
+    "quickStatus": "Quick status",
+    "localEnv": "Local environment:",
+    "apiUrl": "API URL:"
+  },
+  "home": {
+    "welcomeLabel": "Welcome",
+    "welcomeTitle": "Welcome to Intelivox",
+    "welcomeSubtitle": "A scalable frontend structure designed for resident search, configuration, and user management.",
+    "openDashboard": "Open dashboard",
+    "viewResidents": "View residents",
+    "architectureTitle": "Project architecture",
+    "arch1": "Clean folder separation for pages, stores, services, and composables",
+    "arch2": "Side navigation panel with the main content area",
+    "arch3": "Tailwind utility styling with responsive design",
+    "arch4": "TypeScript support and environment-based API configuration",
+    "getStartedTitle": "Get started",
+    "getStartedBody": "Use the sidebar to navigate between pages and build the resident search workflow next. The app is ready to expand with backend integration and authentication later."
+  },
+  "search": {
+    "label": "Residents",
+    "title": "Search Residents",
+    "subtitle": "Search and browse resident records from the backend service.",
+    "searchPlaceholder": "Search by name, room, or status",
+    "search": "Search",
+    "listTitle": "Residents list",
+    "found": "Found {count} residents",
+    "reload": "Reload",
+    "loading": "Loading residents...",
+    "empty": "No residents loaded yet. Click Reload to fetch data.",
+    "type": "Type"
+  },
+  "update": {
+    "label": "Management",
+    "title": "Update Resident",
+    "subtitle": "Update resident details by mobile phone",
+    "firstName": "First Name *",
+    "lastName": "Last Name *",
+    "mobilePhone": "Mobile Phone *",
+    "homePhone": "Home Phone",
+    "email": "Email",
+    "type": "Type *",
+    "typeIndividual": "Individual",
+    "typeOrganization": "Organization",
+    "typeInstitution": "Institution",
+    "submit": "Update Resident",
+    "updating": "Updating...",
+    "clear": "Clear",
+    "confirmTitle": "Confirm Update",
+    "confirmBody": "Are you sure you want to update this resident?",
+    "notFoundTitle": "Resident Not Found",
+    "notFoundBody": "No resident found with this mobile phone. Would you like to add a new resident?",
+    "addNew": "Add New Resident",
+    "updateSuccess": "Resident updated successfully!",
+    "createSuccess": "Resident created successfully!",
+    "updateError": "Failed to update resident",
+    "createError": "Failed to create resident"
+  },
+  "validation": {
+    "firstNameRequired": "First name is required",
+    "firstNameMax": "First name must be less than 128 characters",
+    "lastNameRequired": "Last name is required",
+    "lastNameMax": "Last name must be less than 128 characters",
+    "mobileRequired": "Mobile phone is required",
+    "phoneFormat": "Invalid phone format (7-32 characters, +0-9()-space)",
+    "emailFormat": "Invalid email format"
+  },
+  "userArea": {
+    "label": "Profile",
+    "title": "User Area",
+    "subtitle": "View and update your profile details.",
+    "signedInAs": "Signed in as",
+    "accountDetails": "Account details",
+    "fullName": "Full name",
+    "emailAddress": "Email address",
+    "saveChanges": "Save changes",
+    "disconnect": "Disconnect"
+  },
+  "settings": {
+    "label": "Preferences",
+    "title": "Settings",
+    "subtitle": "Adjust application preferences and interface options.",
+    "general": "General",
+    "language": "Language",
+    "themeMode": "Theme mode",
+    "dark": "Dark",
+    "light": "Light",
+    "dataRefresh": "Data refresh",
+    "manual": "Manual",
+    "auto": "Auto",
+    "notifications": "Notifications",
+    "enableAlerts": "Enable resident alerts",
+    "receiveEmail": "Receive email notifications"
+  },
+  "errors": {
+    "notFoundLabel": "Page not found",
+    "notFoundCode": "404",
+    "notFoundTitle": "This page doesn’t exist",
+    "notFoundBody": "The page you are looking for may have been moved, renamed, or never existed.",
+    "forbiddenLabel": "Access denied",
+    "forbiddenCode": "403",
+    "forbiddenTitle": "You don’t have permission",
+    "forbiddenBody": "You don’t have permission to view this page. If you believe this is a mistake, contact your administrator.",
+    "backToHome": "Back to home",
+    "goBack": "Go back"
+  }
+}

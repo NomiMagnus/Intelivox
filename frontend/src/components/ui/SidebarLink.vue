@@ -1,7 +1,7 @@
 <template>
   <RouterLink
     :to="to"
-    class="group flex flex-col items-center gap-1 rounded-neo px-2 py-2 text-center transition duration-200 lg:flex-row lg:gap-3 lg:px-4 lg:py-3 lg:text-left"
+    class="group flex flex-col items-center gap-1 rounded-neo px-2 py-2 text-center transition duration-200 lg:flex-row lg:gap-3 lg:px-4 lg:py-3 lg:text-start"
     active-class="lg:bg-neo-elevated"
   >
     <span
@@ -21,28 +21,24 @@
 <script setup lang="ts">
 import { RouterLink, useRoute } from 'vue-router'
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 
-const props = defineProps({
-  to: {
-    type: String,
-    required: true,
-  },
-  icon: {
-    type: String,
-    required: true,
-  },
-})
+const props = defineProps<{
+  name: string
+  labelKey: string
+  icon: string
+}>()
 
 const route = useRoute()
+const { t, locale } = useI18n()
 
-const label = computed(() => {
-  return props.to === '/'
-    ? 'Home'
-    : props.to
-        .slice(1)
-        .replace(/-/g, ' ')
-        .replace(/\b\w/g, (ch) => ch.toUpperCase())
-})
-
-const isActive = computed(() => route.path === props.to)
+// Fall back to the active locale when the route has no locale param yet
+// (e.g. the initial `/` render before the redirect to `/he` resolves),
+// otherwise resolving the named route throws "Missing required param 'locale'".
+const to = computed(() => ({
+  name: props.name,
+  params: { locale: route.params.locale ?? locale.value },
+}))
+const label = computed(() => t(props.labelKey))
+const isActive = computed(() => route.name === props.name)
 </script>

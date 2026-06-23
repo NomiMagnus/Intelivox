@@ -3,13 +3,13 @@
     <div class="neo-hero p-6">
       <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
-          <p class="neo-label">Residents</p>
-          <h1 class="mt-2 text-3xl font-semibold tracking-tight text-white">Search Residents</h1>
-          <p class="mt-2 text-neo-muted">Search and browse resident records from the backend service.</p>
+          <p class="neo-label">{{ $t('search.label') }}</p>
+          <h1 class="mt-2 text-3xl font-semibold tracking-tight text-white">{{ $t('search.title') }}</h1>
+          <p class="mt-2 text-neo-muted">{{ $t('search.subtitle') }}</p>
         </div>
         <div class="flex w-full max-w-md flex-col gap-3 sm:flex-row sm:items-center">
-          <Input v-model="searchTerm" placeholder="Search by name, room, or status" />
-          <Button @click="searchResidents">Search</Button>
+          <Input v-model="searchTerm" :placeholder="$t('search.searchPlaceholder')" />
+          <Button @click="searchResidents">{{ $t('search.search') }}</Button>
         </div>
       </div>
     </div>
@@ -18,20 +18,20 @@
       <div class="flex flex-col gap-3">
         <div class="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 class="text-xl font-semibold text-white">Residents list</h2>
-            <p class="text-sm text-neo-muted">Found {{ store.residentCount }} residents</p>
+            <h2 class="text-xl font-semibold text-white">{{ $t('search.listTitle') }}</h2>
+            <p class="text-sm text-neo-muted">{{ $t('search.found', { count: store.residentCount }) }}</p>
           </div>
-          <Button variant="secondary" @click="loadResidents">Reload</Button>
+          <Button variant="secondary" @click="loadResidents">{{ $t('search.reload') }}</Button>
         </div>
 
-        <div v-if="store.loading" class="neo-inset p-6 text-neo-muted">Loading residents...</div>
+        <div v-if="store.loading" class="neo-inset p-6 text-neo-muted">{{ $t('search.loading') }}</div>
 
         <div v-else-if="store.error" class="rounded-neo border border-red-500/20 bg-red-500/10 p-6 text-red-200">
           {{ store.error }}
         </div>
 
         <div v-else-if="store.residency.length === 0" class="neo-inset p-6 text-neo-muted">
-          No residents loaded yet. Click Reload to fetch data.
+          {{ $t('search.empty') }}
         </div>
 
         <div class="grid gap-4 md:grid-cols-2">
@@ -40,7 +40,7 @@
               <div class="flex items-center justify-between gap-3">
                 <div>
                   <h3 class="text-lg font-semibold text-white">{{ resident.first_name }} {{ resident.last_name }}</h3>
-                  <p class="text-sm text-neo-muted">Type: {{ resident.type }}</p>
+                  <p class="text-sm text-neo-muted">{{ $t('search.type') }}: {{ resident.type }}</p>
                 </div>
                 <span class="neo-inset rounded-full px-3 py-1 text-xs text-neo-muted">{{ resident.status }}</span>
               </div>

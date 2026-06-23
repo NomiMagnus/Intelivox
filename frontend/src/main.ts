@@ -4,6 +4,9 @@ import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createRouter, createWebHistory } from 'vue-router'
 import App from './App.vue'
 import routes from './router'
+import i18n, { isSupportedLocale } from './i18n'
+import { applyDirection } from './i18n/direction'
+import { useLocaleStore } from './stores/locale'
 import './style.css'
 
 import PrimeVue from 'primevue/config'
@@ -19,4 +22,18 @@ const router = createRouter({
   routes,
 })
 
-createApp(App).use(pinia).use(router).use(PrimeVue).mount('#app')
+const app = createApp(App)
+app.use(pinia).use(router).use(PrimeVue).use(i18n)
+
+// Keep i18n locale, document direction, and the persisted choice in sync with
+// the URL's locale prefix (guaranteed valid by the route's locale matcher).
+router.beforeEach((to) => {
+  const loc = to.params.locale
+  if (isSupportedLocale(loc)) {
+    i18n.global.locale.value = loc
+    useLocaleStore().setLocale(loc)
+    applyDirection(loc)
+  }
+})
+
+app.mount('#app')
