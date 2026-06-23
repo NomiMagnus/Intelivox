@@ -9,8 +9,8 @@
         </div>
         <div class="neo-inset p-6">
           <p class="neo-label">{{ $t('userArea.signedInAs') }}</p>
-          <p class="mt-3 text-xl font-semibold text-white">Intelivox User</p>
-          <p class="text-neo-muted">user@intelivox.local</p>
+          <p class="mt-3 text-xl font-semibold text-white">{{ auth.displayName }}</p>
+          <p class="text-neo-muted">{{ auth.userEmail }}</p>
         </div>
       </div>
     </Card>
@@ -20,16 +20,16 @@
       <div class="mt-6 grid gap-4 sm:grid-cols-2">
         <div>
           <label class="neo-label">{{ $t('userArea.fullName') }}</label>
-          <input class="neo-inset mt-2 w-full px-4 py-3 text-white" value="Intelivox User" />
+          <input class="neo-inset mt-2 w-full px-4 py-3 text-white" :value="auth.displayName" readonly />
         </div>
         <div>
           <label class="neo-label">{{ $t('userArea.emailAddress') }}</label>
-          <input class="neo-inset mt-2 w-full px-4 py-3 text-white" value="user@intelivox.local" />
+          <input class="neo-inset mt-2 w-full px-4 py-3 text-white" :value="auth.userEmail" readonly />
         </div>
       </div>
       <div class="mt-6 flex flex-wrap gap-3">
-        <Button>{{ $t('userArea.saveChanges') }}</Button>
-        <Button variant="secondary">{{ $t('userArea.disconnect') }}</Button>
+        <Button @click="goChangePassword">{{ $t('userArea.changePassword') }}</Button>
+        <Button variant="secondary" @click="handleLogout">{{ $t('userArea.disconnect') }}</Button>
       </div>
     </Card>
 
@@ -40,7 +40,28 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 import Card from '../components/ui/Card.vue'
 import Button from '../components/ui/Button.vue'
-import Settings from './Settings.vue';
+import Settings from './Settings.vue'
+
+const { locale } = useI18n()
+const route = useRoute()
+const router = useRouter()
+const auth = useAuthStore()
+
+function localeParam() {
+  return (route.params.locale as string) ?? locale.value
+}
+
+function goChangePassword() {
+  router.push({ name: 'ChangePassword', params: { locale: localeParam() } })
+}
+
+async function handleLogout() {
+  await auth.logout()
+  router.push({ name: 'Login', params: { locale: localeParam() } })
+}
 </script>

@@ -17,6 +17,15 @@
       <SidebarLink name="UpdateResident" label-key="nav.update" icon="pi pi-pencil" />
       <SidebarLink name="SearchResidents" label-key="nav.search" icon="pi pi-search" />
       <SidebarLink name="UserArea" label-key="nav.user" icon="pi pi-user" />
+      <SidebarLink v-if="auth.isAdmin" name="UserManagement" label-key="nav.users" icon="pi pi-users" />
+      <SidebarLink
+        v-if="auth.isAuthenticated"
+        label-key="nav.logout"
+        icon="pi pi-sign-out"
+        is-button
+        @click="handleLogout"
+      />
+      <SidebarLink v-else name="Login" label-key="nav.login" icon="pi pi-sign-in" />
     </nav>
 
     <div class="neo-raised mt-auto hidden p-4 text-sm lg:block">
@@ -35,10 +44,24 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
+import { useAuthStore } from '../stores/auth'
 import SidebarLink from './ui/SidebarLink.vue'
 import viteLogo from '../assets/vite.svg'
 import heroImg from '../assets/hero.png'
 import vueLogo from '../assets/vue.svg'
 
 const apiUrl = computed(() => import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8000')
+
+const auth = useAuthStore()
+const route = useRoute()
+const router = useRouter()
+const { locale } = useI18n()
+
+async function handleLogout() {
+  await auth.logout()
+  const loc = (route.params.locale as string) ?? locale.value
+  router.push({ name: 'Login', params: { locale: loc } })
+}
 </script>

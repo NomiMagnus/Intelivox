@@ -15,6 +15,8 @@ from alembic import context
 # import your app's metadata and models so `autogenerate` works
 from app.db import Base
 import app.models.resident  # noqa: F401
+import app.models.user  # noqa: F401
+import app.models.role  # noqa: F401
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
